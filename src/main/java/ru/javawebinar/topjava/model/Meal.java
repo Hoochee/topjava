@@ -38,4 +38,8 @@ public class Meal {
     public LocalTime getTime() {
         return dateTime.toLocalTime();
     }
+
+    public int getId() {
+        return id;
+    }
 }

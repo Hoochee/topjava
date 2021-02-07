@@ -31,6 +31,6 @@ public class MealServlet extends HttpServlet {
         request.setAttribute("list", list);
 
 
-        request.getRequestDispatcher("/meal.jsp").forward(request, response);
+        request.getRequestDispatcher("/meals.jsp").forward(request, response);
     }
 }
