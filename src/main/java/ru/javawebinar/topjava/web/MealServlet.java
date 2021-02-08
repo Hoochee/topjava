@@ -25,7 +25,6 @@ public class MealServlet extends HttpServlet {
     private static final int CALORIES_PER_DAY = 2000;
     private static String standartpage = "/meals.jsp";
     private static String edit = "/editMealForm.jsp";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
     @Override
@@ -63,7 +62,7 @@ public class MealServlet extends HttpServlet {
         String description = req.getParameter("nameMeal");
         int calories = Integer.parseInt(req.getParameter("calories"));
         String stringDate = req.getParameter("date");
-        LocalDateTime datetime = LocalDateTime.parse(stringDate.replace("T", " "), FORMATTER);
+        LocalDateTime datetime = LocalDateTime.parse(stringDate);
         if (stringID != null) {
             int id = Integer.parseInt(stringID);
             storage.updateMeal(id, datetime, description, calories);
