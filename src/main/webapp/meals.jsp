@@ -21,10 +21,11 @@
     <c:forEach var="num" items="${list}">
         <tr align="center" bgcolor="${num.excess?'red':'green'}">
             <td>${num.id}</td>
-            <fmt:parseDate value="${num.dateTime}" pattern="yyyy-MM-dd" var="parsedDateTime" type="date" />
-            <td><fmt:formatDate pattern="dd.MM.yyyy" value="${ parsedDateTime }" /></td>
+            <td>${num.formattedDateTime}</td>
             <td>${num.description}</td>
             <td>${num.calories}</td>
+            <td><a href="meals?action=edit&userId=<c:out value="${num.id}"/>">Update</a></td>
+            <td><a href="meals?action=delete&userId=<c:out value="${num.id}"/>">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
