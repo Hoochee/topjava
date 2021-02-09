@@ -11,7 +11,7 @@
 <h2>Meals</h2>
 <table border="5">
     <tr align="center">
-        <td>ID</td>
+        <td style="display:none;">ID</td>
         <td>Date</td>
         <td>Description</td>
         <td>Calories</td>
@@ -20,7 +20,7 @@
     </tr>
     <c:forEach var="num" items="${list}">
         <tr align="center" bgcolor="${num.excess?'red':'green'}">
-            <td>${num.id}</td>
+            <td style="display:none;">${num.id }</td>
             <td>${num.formattedDateTime}</td>
             <td>${num.description}</td>
             <td>${num.calories}</td>
@@ -29,5 +29,6 @@
         </tr>
     </c:forEach>
 </table>
+<p><a href="meals?action=insert">Add Meal</a></p>
 </body>
 </html>

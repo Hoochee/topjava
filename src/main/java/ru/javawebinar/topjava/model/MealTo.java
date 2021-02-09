@@ -52,7 +52,7 @@ public class MealTo {
     }
 
     public String getFormattedDateTime() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(this.dateTime);
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(this.dateTime);
     }
 
 }
