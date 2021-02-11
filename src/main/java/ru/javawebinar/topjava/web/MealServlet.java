@@ -1,8 +1,8 @@
 package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
-import ru.javawebinar.topjava.dao.DAO;
-import ru.javawebinar.topjava.dao.MealDAOimpl;
+import ru.javawebinar.topjava.dao.Dao;
+import ru.javawebinar.topjava.dao.MealDaoInMemory;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.util.MealsUtil;
 
@@ -19,7 +19,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(Servlet.class);
-    private static DAO<Meal> storage = new MealDAOimpl();
+    private static Dao storage = new MealDaoInMemory();
     private static final int CALORIES_PER_DAY = 2000;
     private static String edit = "/editMealForm.jsp";
     private static String meal = "/meals.jsp";

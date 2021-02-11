@@ -18,14 +18,14 @@
         <td>Update</td>
         <td>Delete</td>
     </tr>
-    <c:forEach var="num" items="${list}">
-        <tr align="center" bgcolor="${num.excess?'red':'green'}">
-            <td style="display:none;">${num.id }</td>
-            <td>${num.formattedDateTime}</td>
-            <td>${num.description}</td>
-            <td>${num.calories}</td>
-            <td><a href="meals?action=edit&userId=<c:out value="${num.id}"/>">Update</a></td>
-            <td><a href="meals?action=delete&userId=<c:out value="${num.id}"/>">Delete</a></td>
+    <c:forEach var="meal" items="${list}">
+        <tr align="center" bgcolor="${meal.excess?'red':'green'}">
+            <td style="display:none;">${meal.id }</td>
+            <td>${meal.formattedDateTime}</td>
+            <td>${meal.description}</td>
+            <td>${meal.calories}</td>
+            <td><a href="meals?action=edit&userId=<c:out value="${meal.id}"/>">Update</a></td>
+            <td><a href="meals?action=delete&userId=<c:out value="${meal.id}"/>">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

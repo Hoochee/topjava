@@ -28,8 +28,8 @@
         <td>Action</td>
     </tr>
 
-    <c:set var="isAdd" scope="session" value="${isAddMeal}"/>
-    <c:if test="${isAdd}">
+<%--    <c:set var="isAdd" scope="session" value="${isAddMeal}"/>--%>
+<%--    <c:if test="${isAdd}">--%>
 
 
 
@@ -42,7 +42,7 @@
             <form method="get" action="meals"><input type="submit" value="Back"></form>
         </td>
     </tr>
-    </c:if>
+<%--    </c:if>--%>
 
     <tr>
         <form method="post" action="meals">
