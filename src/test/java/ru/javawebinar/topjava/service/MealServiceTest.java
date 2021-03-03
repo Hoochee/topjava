@@ -1,5 +1,4 @@
 package ru.javawebinar.topjava.service;
-
 import org.junit.AfterClass;
 import org.junit.AssumptionViolatedException;
 import org.junit.Rule;
@@ -16,17 +15,14 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertThrows;
 import static org.slf4j.LoggerFactory.getLogger;
 import static ru.javawebinar.topjava.MealTestData.*;
 import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
 import static ru.javawebinar.topjava.UserTestData.USER_ID;
-
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -49,14 +45,11 @@ public class MealServiceTest {
 
     }
 
-
     @Autowired
     private MealService service;
 
-
     @Rule
     public Stopwatch stopwatch = new Stopwatch() {
-
 
         @Override
         protected void failed(long nanos, Throwable e, Description description) {
@@ -79,14 +72,12 @@ public class MealServiceTest {
         System.out.println(log);
     }
 
-
     @Test
     public void delete() {
 
         service.delete(MEAL1_ID, USER_ID);
         assertThrows(NotFoundException.class, () -> service.get(MEAL1_ID, USER_ID));
     }
-
 
     @Test
     public void deleteNotFound() {
@@ -113,7 +104,6 @@ public class MealServiceTest {
         assertThrows(DataAccessException.class, () ->
                 service.create(new Meal(null, meal1.getDateTime(), "duplicate", 100), USER_ID));
     }
-
 
     @Test
     public void get() {
@@ -161,6 +151,4 @@ public class MealServiceTest {
     public void getBetweenWithNullDates() {
         MEAL_MATCHER.assertMatch(service.getBetweenInclusive(null, null, USER_ID), meals);
     }
-
-
 }
