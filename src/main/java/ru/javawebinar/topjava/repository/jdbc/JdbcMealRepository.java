@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.util.ValidationUtil;
 
 import javax.validation.*;
 import java.time.LocalDateTime;
@@ -38,23 +39,16 @@ public class JdbcMealRepository implements MealRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    private final ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
-    Validator validator = validatorFactory.getValidator();
-
     @Override
     @Transactional
     public Meal save(Meal meal, int userId) {
-        Set<ConstraintViolation<Meal>> violations = validator.validate(meal);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
+        ValidationUtil.validate(meal);
         MapSqlParameterSource map = new MapSqlParameterSource()
                 .addValue("id", meal.getId())
                 .addValue("description", meal.getDescription())
                 .addValue("calories", meal.getCalories())
                 .addValue("date_time", meal.getDateTime())
                 .addValue("user_id", userId);
-
         if (meal.isNew()) {
             Number newId = insertMeal.executeAndReturnKey(map);
             meal.setId(newId.intValue());

@@ -24,12 +24,10 @@ import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
 
 @Controller
 public class JspMealController extends AbstractMealController{
-    private final MealService service;
 
     @Autowired
     public JspMealController(MealService service) {
         super(service);
-        this.service=service;
     }
 
     @GetMapping("/meals")
@@ -38,7 +36,7 @@ public class JspMealController extends AbstractMealController{
         return "meals";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("meals/delete")
     public String delete(HttpServletRequest request) {
         /*delete(getId(request));
         return "redirect:/meals";*/
@@ -46,7 +44,7 @@ public class JspMealController extends AbstractMealController{
         return "redirect:/meals";
     }
 
-    @GetMapping("/create")
+    @GetMapping("meals/create")
     public String create(Model model) {
         Meal meal = new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000);
         model.addAttribute("meal", meal);
@@ -54,14 +52,14 @@ public class JspMealController extends AbstractMealController{
         return "mealForm";
     }
 
-    @GetMapping("/update")
+    @GetMapping("meals/update")
     public String update(HttpServletRequest request, Model model) {
         Meal meal = get(getId(request));
         model.addAttribute("meal", meal);
         return "mealForm";
     }
 
-    @GetMapping("/filter")
+    @GetMapping("meals/filter")
     public String filtered(HttpServletRequest request, Model model) {
         LocalDate startDate = parseLocalDate(request.getParameter("startDate"));
         LocalDate endDate = parseLocalDate(request.getParameter("endDate"));

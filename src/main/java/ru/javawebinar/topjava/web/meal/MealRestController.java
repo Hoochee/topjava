@@ -19,13 +19,9 @@ import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
 @Controller
 public class MealRestController extends AbstractMealController {
-    private static final Logger log = LoggerFactory.getLogger(MealRestController.class);
-
-    private final MealService service;
 
     public MealRestController(MealService service) {
         super(service);
-        this.service = service;
     }
 
 

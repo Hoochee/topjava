@@ -9,38 +9,38 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <section>
-    <h3><spring:message code="meal.title"/></h3>>
+    <h3><spring:message code="meal.title"/></h3>
     <hr/>
-    <h2>Meals</h2>
-    <form method="get" action="<c:url value='/filter'/>">
+    <h2><spring:message code="meal.title"/></h2>
+    <form method="get" action="<c:url value='meals/filter'/>">
         <input type="hidden" name="action" value="filter">
         <dl>
-            <dt>From Date (inclusive):</dt>
+            <dt><spring:message code="meal.fromdate"/></dt>
             <dd><input type="date" name="startDate" value="${param.startDate}"></dd>
         </dl>
         <dl>
-            <dt>To Date (inclusive):</dt>
+            <dt><spring:message code="meal.todate"/></dt>
             <dd><input type="date" name="endDate" value="${param.endDate}"></dd>
         </dl>
         <dl>
-            <dt>From Time (inclusive):</dt>
+            <dt><spring:message code="meal.fromtime"/></dt>
             <dd><input type="time" name="startTime" value="${param.startTime}"></dd>
         </dl>
         <dl>
-            <dt>To Time (exclusive):</dt>
+            <dt><spring:message code="meal.totime"/></dt>
             <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
         </dl>
-        <button type="submit">Filter</button>
+        <button type="submit"><spring:message code="meal.filter"/></button>
     </form>
     <hr/>
-    <a href="<c:url value='/create'/>">Add Meal</a>
+    <a href="<c:url value='/meals/create'/>"><spring:message code="meal.add"/></a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Calories</th>
+            <th><spring:message code="meal.date"/></th>
+            <th><spring:message code="meal.description"/></th>
+            <th><spring:message code="meal.calories"/></th>
             <th></th>
             <th></th>
         </tr>
@@ -57,15 +57,15 @@
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
                 <td>
-                    <form method="get" action="<c:url value='/update'/>" style="margin-top: 11px;float: right">
+                    <form method="get" action="<c:url value='meals/update'/>" style="margin-top: 11px;float: right">
                         <input type="hidden" name="id" value="${meal.id}">
-                        <button type="submit">Update</button>
+                        <button type="submit"><spring:message code="meal.edit"/></button>
                     </form>
                 </td>
                 <td>
-                    <form method="get" action="<c:url value='/delete'/>" style="margin-top: 11px;float: right">
+                    <form method="get" action="<c:url value='meals/delete'/>" style="margin-top: 11px;float: right">
                         <input type="hidden" name="id" value="${meal.id}">
-                        <button type="submit">Delete</button>
+                        <button type="submit"><spring:message code="meal.delete"/></button>
                     </form></td>
 
             </tr>

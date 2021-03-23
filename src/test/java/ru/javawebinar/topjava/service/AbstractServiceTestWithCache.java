@@ -8,13 +8,8 @@ public class AbstractServiceTestWithCache extends AbstractUserServiceTest {
     @Autowired
     protected JpaUtil jpaUtil;
 
-
     @Before
-    public void setup() {
-
-        cacheManager.getCache("users").clear();
+    public void setUp() {
         jpaUtil.clear2ndLevelHibernateCache();
-
-
     }
 }
