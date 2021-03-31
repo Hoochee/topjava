@@ -1,14 +1,13 @@
 package ru.javawebinar.topjava.web.meal;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.to.MealTo;
+import ru.javawebinar.topjava.util.DateTimeUtil;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -41,7 +40,7 @@ public class MealRestController extends AbstractMealController {
         return super.getAll();
     }
 
-    @PostMapping(value = "/create",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Meal> createWithLocation(@RequestBody Meal meal) {
         checkNew(meal);
         Meal created = super.create(meal);
@@ -54,16 +53,23 @@ public class MealRestController extends AbstractMealController {
     @Override
     @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Meal meal,@PathVariable int id) {
+    public void update(@RequestBody Meal meal, @PathVariable int id) {
         super.update(meal, id);
     }
 
-    @Override
+    //@Override
     @GetMapping(value = "/filter")
-    public List<MealTo> getBetween(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime) {
+    public List<MealTo> getBetween(@RequestParam LocalDate startDate, @RequestParam LocalTime startTime,
+                                   @RequestParam LocalDate endDate, @RequestParam LocalTime endTime) {
+        log.info("getBetween dates({} - {}) time({} - {})", startDate, endDate, startTime, endTime);
+        DateTimeUtil.LocalDateTimeToLocalTime dateTimeToLocalTime = new DateTimeUtil.LocalDateTimeToLocalTime();
+        DateTimeUtil.LocalDateTimeToLocalDate dateTimeToLocalDate = new DateTimeUtil.LocalDateTimeToLocalDate();
+        startDate = dateTimeToLocalDate.convert(startDate);
+        //startDateTime.toLocalDate();
+        startTime = dateTimeToLocalTime.convert(startTime);
+        //startDateTime.toLocalTime();
+        endDate = dateTimeToLocalDate.convert(endDate);
+        endTime = dateTimeToLocalTime.convert(endTime);
         return super.getBetween(startDate, startTime, endDate, endTime);
     }
 }
