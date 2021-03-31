@@ -10,7 +10,7 @@
          http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
          http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <cache:annotation-driven cache-manager="noOpCacheManager"/>
+    <cache:annotation-driven cache-manager="noOpCacheManager" />
 
     <!-- Disabling spring cache -->
     <bean id="noOpCacheManager" class="org.springframework.cache.support.NoOpCacheManager"/>

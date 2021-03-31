@@ -58,18 +58,10 @@ public class MealRestController extends AbstractMealController {
     }
 
     //@Override
-    @GetMapping(value = "/filter")
+    @GetMapping(value = "/between")
     public List<MealTo> getBetween(@RequestParam LocalDate startDate, @RequestParam LocalTime startTime,
                                    @RequestParam LocalDate endDate, @RequestParam LocalTime endTime) {
         log.info("getBetween dates({} - {}) time({} - {})", startDate, endDate, startTime, endTime);
-        DateTimeUtil.LocalDateTimeToLocalTime dateTimeToLocalTime = new DateTimeUtil.LocalDateTimeToLocalTime();
-        DateTimeUtil.LocalDateTimeToLocalDate dateTimeToLocalDate = new DateTimeUtil.LocalDateTimeToLocalDate();
-        startDate = dateTimeToLocalDate.convert(startDate);
-        //startDateTime.toLocalDate();
-        startTime = dateTimeToLocalTime.convert(startTime);
-        //startDateTime.toLocalTime();
-        endDate = dateTimeToLocalDate.convert(endDate);
-        endTime = dateTimeToLocalTime.convert(endTime);
         return super.getBetween(startDate, startTime, endDate, endTime);
     }
 }

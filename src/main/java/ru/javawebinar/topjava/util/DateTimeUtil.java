@@ -1,14 +1,17 @@
 package ru.javawebinar.topjava.util;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.Formatter;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 public class DateTimeUtil {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -42,17 +45,4 @@ public class DateTimeUtil {
         return StringUtils.hasLength(str) ? LocalTime.parse(str) : null;
     }
 
-    public static class LocalDateTimeToLocalTime implements Converter<LocalTime, LocalTime> {
-        @Override
-        public LocalTime convert(LocalTime localTime) {
-            return localTime.toString().equals(" ") ? null : localTime;
-        }
-    }
-
-    public static class LocalDateTimeToLocalDate implements Converter<LocalDate, LocalDate> {
-        @Override
-        public LocalDate convert(LocalDate localDate) {
-            return localDate.toString().equals(" ") ? null : localDate;
-        }
-    }
 }
