@@ -6,13 +6,14 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
 
 public class DateFormatter implements Formatter<LocalDate> {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
     public LocalDate parse(String text, Locale locale) {
-        return StringUtils.hasLength(text) ? null : LocalDate.parse(text, DATE_FORMATTER);
+        return parseLocalDate(text);
     }
 
     @Override
