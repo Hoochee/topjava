@@ -30,8 +30,29 @@ $(function () {
             ],
             "order" : [
                 0,
-                "asc"
+                "desc"
             ]
         })
     )
-})
+});
+function resetForm() {
+   $('#dateForm').find(":input").val("");
+   updateTable();
+}
+
+function filter() {
+
+        let form=$('#dateForm');
+       /* var startDate=(form.find('#startDate').val());
+        var startTime=(form.find('#startTime').val());
+        var endDate=(form.find('#endDate').val());
+        var endTime=(form.find('#endTime').val());*/
+        $.ajax({
+            type:"GET",
+            url:"ajax/meals/filter",
+            data:form.serialize()
+        }).done(function (){
+            updateTable();
+        })
+        ;
+}
