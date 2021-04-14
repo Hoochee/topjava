@@ -104,7 +104,7 @@ startTime.datetimepicker({
 });
 
 endTime.datetimepicker({
-    datepicker: false,
+    timepicker: false,
     format: 'H:i',
     onShow: function (ct) {
         this.setOptions({
