@@ -94,7 +94,7 @@ endDate.datetimepicker({
 const startTime = $('#startTime')
 const endTime = $('#endTime')
 startTime.datetimepicker({
-    timepicker: false,
+    datepicker: false,
     format: 'H:i',
     onShow: function (ct) {
         this.setOptions({
@@ -104,7 +104,7 @@ startTime.datetimepicker({
 });
 
 endTime.datetimepicker({
-    timepicker: false,
+    datepicker: false,
     format: 'H:i',
     onShow: function (ct) {
         this.setOptions({
